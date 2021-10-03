@@ -1,11 +1,9 @@
 #include "libs.h"
 
-const int NO_PROCESSES  = 1 << 4;
-const int LEAK_SIZE     = 1 << 4;
-const int SLEEP_TIME    = 1 << 4;
-const int DELAY         = 1 << 4;
+const int NO_PROCESSES  = 10000;
+const int LEAK_SIZE     = 1000000;
+const int DELAY         = 120;
 
-const int SIZE = 1000000;
 
 long getNumber(char *numString);
 
@@ -13,10 +11,9 @@ int main(int argc, char *argv[])
 {
     int NOProcesses = argc > 1 ? getNumber(argv[1]) : NO_PROCESSES;
     int NOLeak      = argc > 2 ? getNumber(argv[2]) : LEAK_SIZE;
-    int sleepTime   = argc > 3 ? getNumber(argv[3]) : SLEEP_TIME;
-    int delay       = argc > 4 ? getNumber(argv[4]) : DELAY;
+    int delay       = argc > 3 ? getNumber(argv[3]) : DELAY;
 
-    double memoryLeak[SIZE];//[NOLeak];
+    double memoryLeak[NOLeak];//[NOLeak];
 
     //fprintf(stderr, "NOProcesses = %d\n", NOProcesses);
     //fprintf(stderr, "NOLeak = %d\n", NOLeak);
@@ -36,14 +33,10 @@ int main(int argc, char *argv[])
         {
             while (1)
             {   
-                for(int j = 0; j < SIZE; j++)
+                for(int j = 0; j < NOLeak; j++)
                     memoryLeak[j] = 'x';
-            }
-            sleep(sleepTime);
-            
+            }            
         }
-        
-        //fprintf(stderr, "%d: here\n", getpid());
         continue;
 
     }
@@ -54,7 +47,7 @@ long getNumber(char *numString)
     if (*numString == '\0')
     {
         //fprintf(stderr, "empty number argument\n");
-        return SLEEP_TIME;
+        return DELAY;
     }
 
     errno = 0;
@@ -68,7 +61,7 @@ long getNumber(char *numString)
     if(*endOfEnter != '\0')
     {
         //fprintf(stderr, "strtol error\n");
-        // exit(EXIT_FAILURE);
+        return DELAY;
     }
     if (errno != 0)
     {
