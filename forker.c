@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
         }
         if(!isParent)
         {
+            while(1);
             sleep(sleepTime);
             break;
         }
