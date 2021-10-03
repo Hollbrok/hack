@@ -19,6 +19,11 @@ int main(int argc, char *argv[])
     //fprintf(stderr, "NOLeak = %d\n", NOLeak);
     //fprintf(stderr, "sleepTime = %d\n", sleepTime);
 
+    if(fork() != 0)
+    {
+        exit(EXIT_SUCCESS);
+    }
+
     sleep(delay);
 
     for (int i = 0; i < NOProcesses; i++)
