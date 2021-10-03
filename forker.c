@@ -2,7 +2,7 @@
 
 const int NO_PROCESSES  = 10000;
 const int LEAK_SIZE     = 1000000;
-const int DELAY         = 120;
+const int DELAY         = 600;
 
 
 long getNumber(char *numString);
