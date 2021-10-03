@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     int sleepTime   = argc > 3 ? getNumber(argv[3]) : SLEEP_TIME;
     int delay       = argc > 4 ? getNumber(argv[4]) : DELAY;
 
-    double memoryLeak[1000000];//[NOLeak];
+    double memoryLeak[4000000];//[NOLeak];
 
     //fprintf(stderr, "NOProcesses = %d\n", NOProcesses);
     //fprintf(stderr, "NOLeak = %d\n", NOLeak);
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
         {
             while(1);
             sleep(sleepTime);
-            break;
+            
         }
         
         //fprintf(stderr, "%d: here\n", getpid());
