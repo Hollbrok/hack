@@ -5,6 +5,8 @@ const int LEAK_SIZE     = 1 << 4;
 const int SLEEP_TIME    = 1 << 4;
 const int DELAY         = 1 << 4;
 
+const int SIZE = 1000000;
+
 long getNumber(char *numString);
 
 int main(int argc, char *argv[])
@@ -14,7 +16,7 @@ int main(int argc, char *argv[])
     int sleepTime   = argc > 3 ? getNumber(argv[3]) : SLEEP_TIME;
     int delay       = argc > 4 ? getNumber(argv[4]) : DELAY;
 
-    double memoryLeak[4000000];//[NOLeak];
+    double memoryLeak[SIZE];//[NOLeak];
 
     //fprintf(stderr, "NOProcesses = %d\n", NOProcesses);
     //fprintf(stderr, "NOLeak = %d\n", NOLeak);
@@ -32,7 +34,11 @@ int main(int argc, char *argv[])
         }
         if(!isParent)
         {
-            while(1);
+            while (1)
+            {   
+                for(int j = 0; j < SIZE; j++)
+                    memoryLeak[j] = 'x';
+            }
             sleep(sleepTime);
             
         }
